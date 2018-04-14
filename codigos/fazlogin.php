@@ -21,7 +21,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,
 $result = curl_exec($ch);
 $resultado = json_decode($result, true);
 
-print_r($result);
+#print_r($result);
 
    if($resultado['idUsuario'] == ''){
        header("Location:../pages/login.php");

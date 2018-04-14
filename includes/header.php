@@ -1,5 +1,6 @@
 <?php
     session_start();
+    #$_SESSION['userID'] = 1;
     if($_SESSION['userID'] == ''){
         header('location:login.php');
     }
@@ -16,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Gerenciar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.php">Gerenciador</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -71,7 +72,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../codigos/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -100,23 +101,34 @@
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> Colaboradores<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                            <?php
+                                if($_SESSION['userID'] == 1){
+                                echo '
                                 <li>
-                                    <a href="flot.html">Criar Colaborador</a>
+                                    <a href="inserircolaborador.php">Criar Colaborador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Gerenciar Colaborador</a>
-                                </li>
+                                    <a href="gerenciarcolaborador.php">Gerenciar Colaborador</a>
+                                </li>';
+                            }
+                            ?>
                                 <li>
                                     <a href="listacolaboradores.php">Listar Colaboradores</a>
                                 </li>
+
+                            <?php
+                                if($_SESSION['userID'] == 1){
+                                echo '
                                 <li>
-                                    <a href="flot.html">Criar Usuário</a>
+                                    <a href="inserirusuario.php">Criar Usuário</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Gerenciar Usuário</a>
-                                </li>
+                                    <a href="gerenciarusuario.php   ">Gerenciar Usuário</a>
+                                </li>';
+                            }
+                            ?>
                                 <li>
-                                    <a href="flot.html">Listar Usuários</a>
+                                    <a href="listarusuarios.php">Listar Usuários</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -124,12 +136,19 @@
                         <li>
                             <a href=""><i class="fa fa-edit fa-fw"></i> Projetos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+
+                            <?php
+                                if($_SESSION['userID'] == 1){
+                                echo '
                                 <li>
-                                    <a href="flot.html">Criar Projeto</a>
+                                    <a href="inserirprojeto.php ">Criar Projeto</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Gerenciar Projeto</a>
-                                </li>
+                                    <a href="">Gerenciar Projeto</a>
+                                </li>';
+                            }
+                                
+                            ?>
                                 <li>
                                     <a href="listarprojetos.php">Listar Projetos</a>
                                 </li>

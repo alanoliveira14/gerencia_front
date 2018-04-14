@@ -1,7 +1,8 @@
 <?php
 
 include('../includes/header.php');
-$ch = curl_init('http://localhost:8080/colaborador/listar');
+
+$ch = curl_init('http://localhost:8080/usuario/listar');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER,
@@ -18,10 +19,10 @@ $resultado = json_decode($result, true);
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Nome colaborador</th>
-                            <th>E-mail</th>
-                            <th>Data Nascimento</th>
-                            <th>CPF</th>
+                            <th>Usuário</th>
+                            <th>Data Inserção</th>
+                            <th>Gerencia Projetos?</th>
+                            <th></th> 
                         </tr>
                         </thead>
                         <tbody>
@@ -29,11 +30,17 @@ $resultado = json_decode($result, true);
                         foreach($resultado as $res) :
                             ?>
                             <tr>
-                                <td><?=$res['nome']?></td>
-                                <td><?=$res['email']?></td>
-                                <td><?=$res['dataNascimento']?></td>
-                                <td><?=$res['cpf']?></td>
+                            <form action="../codigos/deletarusuario.php" method="post">
+                                <td name="user"><?=$res['usuario']?></td>
+                                <td><?=$res['dataInsercao']?></td>
+                                <td><?php
+                                if($res['gerenciaProjetos'] == 1){
+                                    echo 'Sim';
+                                }else {
+                                    echo 'Não';
+                                }?></td>
 
+                                <td><input class="form-control" type="hidden" name="user"  value= <?=$res['idUsuario']?> ><button class="btn btn-danger form-control" type="submit">deletar</button></td></form>
                             </tr>
                             <?php
                         endforeach

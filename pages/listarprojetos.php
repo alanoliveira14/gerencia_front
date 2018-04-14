@@ -1,13 +1,13 @@
 <?php
 
 include('../includes/header.php');
-$ch = curl_init('http://localhost:8080/usuario/listar');
+
+$ch = curl_init('http://localhost:8080/projeto/listar');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER,
     array(
-        'Content-Type: application/json; Charset=UTF-8',
-        'Authorization:' . $_SESSION['uToken']
+        'Content-Type: application/json; Charset=UTF-8'
     ));
 
 $result = curl_exec($ch);
@@ -19,9 +19,11 @@ $resultado = json_decode($result, true);
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Usuário</th>
-                            <th>Data Inserção</th>
-                            <th>Gerencia Projetos?</th>
+                            <th>Título</th>
+                            <th>Descrição</th>
+                            <th>Finalidade</th>
+                            <th>Gerente</th>
+                            <th>Cliente</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,14 +31,11 @@ $resultado = json_decode($result, true);
                         foreach($resultado as $res) :
                             ?>
                             <tr>
-                                <td><?=$res['usuario']?></td>
-                                <td><?=$res['dataInsercao']?></td>
-                                <td><?php
-                                if($res['gerenciaProjetos'] == 1){
-                                    echo 'Sim';
-                                }else {
-                                    echo 'Não';
-                                }?></td>
+                                <td><?=$res['titulo']?></td>
+                                <td><?=$res['descricao']?></td>
+                                <td><?=$res['finalidade']?></td>
+                                <td><?=$res['nomeGerente']?></td>
+                                <td><?=$res['nomeCliente']?></td>
 
                             </tr>
                             <?php
