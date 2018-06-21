@@ -6,8 +6,7 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER,
     array(
-        'Content-Type: application/json; Charset=UTF-8',
-        'Authorization:' . $_SESSION['uToken']
+        'Content-Type: application/json; Charset=UTF-8'
     ));
 
 $result = curl_exec($ch);
