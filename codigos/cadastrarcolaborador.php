@@ -1,27 +1,27 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $nome = $_POST['nome'];
-$email = $_POST['email'];
 $dataNascimento = $_POST['dataNascimento'];
 $cpf = $_POST['cpf'];
-$data = array(
-    "nome" => $nome,
-    "email" => $email,
-    "dataNascimento"=>$dataNascimento,
-    "cpf"=>$cpf
-);
+$sexo = $_POST['sexo'];
 
+$server = "us-cdbr-iron-east-03.cleardb.net";
+$user = "b20da04202afd0";
+$schema = "heroku_43e989bb842fe2c";
+$pass = "0169c99a";
 
-$data_string = json_encode($data);
-echo $data_string;
-$ch = curl_init('http://localhost:8080/colaborador/criar');
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, 
- array(
-  'Content-Type: application/json; Charset=UTF-8'
- ));
+$conn = new mysqli($server, $user, $pass, $schema);
 
- $result = curl_exec($ch);
+$query = $conn->prepare("INSERT INTO PACIENTE (nome, dataNascimento, cpf, sexo) VALUES (?,?,?,?)");
+
+$query->bind_param('ssss',utf8_decode($nome), $dataNascimento, $cpf, $sexo);
+
+$query->execute();
+
+mysqli_close($conn);
+
  header('Location:../pages/inserircolaborador.php');

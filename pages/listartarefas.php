@@ -2,16 +2,16 @@
 
 include('../includes/header.php');
 
-$ch = curl_init('http://localhost:8080/tarefa/listar');
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER,
-    array(
-        'Content-Type: application/json; Charset=UTF-8'
-    ));
 
-$result = curl_exec($ch);
-$resultado = json_decode($result, true);
+include ('../includes/database.php');
+
+
+$conn = new mysqli($server, $user, $pass, $schema);
+$query = "select e.idExame, p.nome, p.cpf, te.tipoExame from exame e inner join paciente p inner join tipoexame te where p.idPaciente = e.idPaciente and te.idTipoExame = e.idTipoExame;";
+
+$resultado = mysqli_query($conn, $query);
+
+
 ?>
 
 
@@ -19,13 +19,9 @@ $resultado = json_decode($result, true);
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Descrição</th>
-                            <th>Data Início</th>
-                            <th>Data Prevista</th>
-                            <th>Data Finalização</th>
-                            <th>Situação</th>
-                            <th>Projeto</th>
-                            <th>Responsável</th>
+                            <th>Nome Paciente</th>
+                            <th>CPF</th>
+                            <th>Tipo Exame</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,17 +29,9 @@ $resultado = json_decode($result, true);
                         foreach($resultado as $res) :
                             ?>
                             <tr>
-                            <form action="editartarefa.php" method="post">
-                                <td><?=$res['descricao']?></td>
-                                <td><?=$res['dataInicio']?></td>
-                                <td><?=$res['dataPrevista']?></td>
-                                <td><?=$res['dataFinalizacao']?></td>
-                                <td><?=$res['situacao']?></td>
-                                <td><?=$res['nomeProjeto']?></td>
-                                <td><?=$res['nomeColaborador']?></td>
-                                <?php if ($res['situacao'] != 'FECHADA')
-                                echo'<td><input class="form-control" type="hidden" name="idtarefa"  value='.$res["idTarefas"].'><button class="btn btn-success form-control" type="submit">editar</button></td>';?>
-                                </form>
+                                <td><?=$res['nome']?></td>
+                                <td><?=$res['cpf']?></td>
+                                <td><?=$res['tipoExame']?></td>
                             </tr>
                             <?php
                         endforeach

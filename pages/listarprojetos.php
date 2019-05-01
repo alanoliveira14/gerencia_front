@@ -2,16 +2,15 @@
 
 include('../includes/header.php');
 
-$ch = curl_init('http://localhost:8080/projeto/listar');
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER,
-    array(
-        'Content-Type: application/json; Charset=UTF-8'
-    ));
+include ('../includes/database.php');
 
-$result = curl_exec($ch);
-$resultado = json_decode($result, true);
+
+
+$conn = new mysqli($server, $user, $pass, $schema);
+$query = "SELECT * FROM MEDICO";
+
+$resultado = mysqli_query($conn, $query);
+
 ?>
 
 
@@ -19,11 +18,9 @@ $resultado = json_decode($result, true);
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Título</th>
-                            <th>Descrição</th>
-                            <th>Finalidade</th>
-                            <th>Gerente</th>
-                            <th>Cliente</th>
+                            <th>Nome</th>
+                            <th>CRM</th>
+                            <th>Especialidade</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,11 +28,9 @@ $resultado = json_decode($result, true);
                         foreach($resultado as $res) :
                             ?>
                             <tr>
-                                <td><?=$res['titulo']?></td>
-                                <td><?=$res['descricao']?></td>
-                                <td><?=$res['finalidade']?></td>
-                                <td><?=$res['nomeGerente']?></td>
-                                <td><?=$res['nomeCliente']?></td>
+                                <td><?=utf8_encode($res['nome'])?></td>
+                                <td><?=$res['crm']?></td>
+                                <td><?=$res['especialidade']?></td>
 
                             </tr>
                             <?php

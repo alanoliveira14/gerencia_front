@@ -1,16 +1,17 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('../includes/header.php');
-$ch = curl_init('http://localhost:8080/colaborador/listar');
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER,
-    array(
-        'Content-Type: application/json; Charset=UTF-8'
-    ));
+include ('../includes/database.php');
 
-$result = curl_exec($ch);
-$resultado = json_decode($result, true);
+
+$conn = new mysqli($server, $user, $pass, $schema);
+$query = "SELECT * FROM PACIENTE";
+
+$resultado = mysqli_query($conn, $query);
+
 ?>
 
 
@@ -18,10 +19,10 @@ $resultado = json_decode($result, true);
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Nome colaborador</th>
-                            <th>E-mail</th>
-                            <th>Data Nascimento</th>
+                            <th>Nome Paciente</th>
                             <th>CPF</th>
+                            <th>Data Nascimento</th>
+                            <th>Sexo</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,9 +31,9 @@ $resultado = json_decode($result, true);
                             ?>
                             <tr>
                                 <td><?=$res['nome']?></td>
-                                <td><?=$res['email']?></td>
-                                <td><?=$res['dataNascimento']?></td>
                                 <td><?=$res['cpf']?></td>
+                                <td><?=$res['dataNascimento']?></td>
+                                <td><?=$res['sexo']?></td>
 
                             </tr>
                             <?php
