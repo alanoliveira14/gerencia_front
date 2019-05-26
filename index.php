@@ -3,7 +3,7 @@
 include('header.php');
 ?>
 <div class= "col-md-10">
-  <h3>Bem vindo ao seus sistema médico</h3>
+  <h3>Bem vindo ao seu sistema médico</h3>
 
   <div class="panel-group">
     <h4>Recomendações</h4>

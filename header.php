@@ -127,13 +127,13 @@
                             <ul class="nav nav-second-level">
 
                                 <li>
-                                    <a href="pages/cadastrartarefa.php ">Cadastrar Exame</a>
+                                    <a href="pages/cadastrartarefa.php ">Agendar Exame</a>
                                 </li>
                                 <li>
                                     <a href="pages/listartarefas.php">Listar Exames</a>
                                 </li>
                                 <li>
-                                    <a href="pages/inserirconsulta.php ">Cadastrar Consulta</a>
+                                    <a href="pages/inserirconsulta.php ">Agendar Consulta</a>
                                 </li>
                                 <li>
                                     <a href="pages/listarconsultas.php">Listar Consultas</a>
