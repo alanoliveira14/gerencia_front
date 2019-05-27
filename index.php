@@ -38,9 +38,6 @@ include('header.php');
           <ul>
             <li>Agendar consultas</li>
             <li>Agendar Exames</li>
-            <li>Cadastrar médicos</li>
-            <li>Cadastrar pacientes</li>
-            <li>Verificar o estoque</li>
           </ul>
         </div>
       </div>

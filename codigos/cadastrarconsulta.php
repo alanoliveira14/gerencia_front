@@ -22,4 +22,4 @@ $query->execute();
 mysqli_close($conn);
 
 
-header('Location:../pages/inserirconsulta.php');
+header('Location:../pages/listamedico.php');

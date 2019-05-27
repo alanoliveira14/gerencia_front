@@ -99,30 +99,6 @@
                         <a href="../index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i>Pacientes<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="inserircolaborador.php">Cadastrar Paciente</a>
-                            </li>
-                            <li>
-                                <a href="listacolaboradores.php">Listar Pacientes</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href=""><i class="fa fa-user fa-fw"></i>Médicos<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-
-                            <li>
-                                <a href="inserirprojeto.php ">Cadastrar Médico</a>
-                            </li>
-                            <li>
-                                <a href="listarprojetos.php">Listar Médicos</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
                         <a href=""><i class="fa fa-edit fa-fw"></i>Exames e Consultas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
@@ -130,13 +106,10 @@
                                 <a href="cadastrartarefa.php ">Agendar Exame</a>
                             </li>
                             <li>
-                                <a href="listartarefas.php">Listar Exames</a>
-                            </li>
-                            <li>
                                 <a href="inserirconsulta.php ">Agendar Consulta</a>
                             </li>
                             <li>
-                                <a href="listarconsultas.php">Listar Consultas</a>
+                                <a href="pegarcpf.php">Listar Suas Consultas e Exames</a>
                             </li>
                         </ul>
                     </li>
